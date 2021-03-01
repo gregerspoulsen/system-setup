@@ -1,0 +1,19 @@
+- name: install i3wsr [https://github.com/roosta/i3wsr]
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+
+  tasks:
+    
+  - name: Install cargo
+    apt:
+      name: cargo
+    become: true
+    
+
+  - name: Setup Snap Plugs
+    become: yes
+    become_method: sudo
+    changed_when: false
+    shell: 'cargo install i3wsr'
+

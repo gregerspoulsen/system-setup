@@ -1,0 +1,11 @@
+---
+- name: install vscode
+  hosts: localhost 
+
+  tasks:
+  - name: install vscode
+    snap:
+      name: code
+      classic: true
+    become: true
+

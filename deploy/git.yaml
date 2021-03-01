@@ -1,0 +1,10 @@
+---
+- name: install git
+  hosts: localhost 
+
+  tasks:
+  - name: install git
+    apt:
+      name: git
+    become: true
+

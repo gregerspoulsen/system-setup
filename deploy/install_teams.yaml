@@ -1,0 +1,9 @@
+- name: install microsoft teams
+  hosts: localhost
+
+  tasks:
+    
+  - name: snap install teams
+    snap:
+      name: teams
+    become: true

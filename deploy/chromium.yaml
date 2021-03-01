@@ -1,0 +1,9 @@
+- name: install chromium browser
+  hosts: localhost
+
+  tasks:
+    
+  - name: snap install chromium
+    snap:
+      name: chromium
+    become: true

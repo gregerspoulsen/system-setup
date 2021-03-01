@@ -1,0 +1,24 @@
+- name: install espanso
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+
+  tasks:
+
+  - name: install xclip (required by espanso)
+    apt:
+      name: xclip
+    become: true
+    
+  - name: install espanso
+    snap:
+      name: espanso
+      classic: true
+    become: true
+
+  - name: create symlink to config
+    file:
+      src: '{{ base_path }}/config/espanso'
+      dest: "{{ lookup('env', 'HOME') }}/.config/espanso"
+      state: link
+    become: gp

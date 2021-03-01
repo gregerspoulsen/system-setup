@@ -1,0 +1,13 @@
+- name: install i3-wm
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+
+  tasks:
+
+  - name: create symlink to config
+    file:
+      src: '{{ base_path }}/config/i3'
+      dest: "{{ lookup('env', 'HOME') }}.config/i3"
+      state: link
+    become: gp

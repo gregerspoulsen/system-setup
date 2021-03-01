@@ -1,0 +1,64 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+
+  # Dates
+  - trigger: ";dd"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d"
+
+  - trigger: ";dt"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d"
+          offset: 86400
+
+  # Names
+  - trigger: ";gp"
+    replace: "gregerspoulsen" 
+
+
+  # Greetings
+  - trigger: ";mvh"
+    replace: "Med venlig hilsen\nGregers"
+
+  # Symbols
+  - trigger: ";cm"
+    replace: "✔ "
+
+  # Shell commands
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo Hello from your shell"
+
+  # Daily Routines
+  - trigger: ";dle" #Daily Log Entry Template
+    replace: |
+              __$|$__
+              The right way to spend my time?
+
+
+  # Ansible
+  - trigger: ";apl" # Ansible Playbook Local
+    replace: "ansible-playbook -i localhost "
+
+  # E-mail
+  - trigger: ";wem" # Work Email
+    replace: "gp@airborneinstruments.dk"

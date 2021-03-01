@@ -1,0 +1,24 @@
+- name: install remmina
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+
+  tasks:
+    
+  - name: Install Remmina
+    snap:
+      name: remmina
+    become: true
+
+  - name: Setup Snap Plugs
+    become: yes
+    become_method: sudo
+    changed_when: false
+    shell: 'snap connect {{ item.app }}:{{ item.plug }}'
+    with_items:
+      - plug: avahi-observe
+        app: remmina
+      - plug: audio-record
+        app: remmina
+      - plug: password-manager-service
+        app: remmina
