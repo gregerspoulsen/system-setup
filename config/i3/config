@@ -13,11 +13,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+#font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 9
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -182,9 +182,15 @@ bar {
 
 
 # GP Edits Below ---------------------------------
+
 # mod+p to move workspace to other screen:
 bindsym $mod+p move workspace to output right
-#interactive screenshot by pressing printscreen
+
+# interactive screenshot by pressing printscreen
 bindsym Print exec gnome-screenshot -i 
-#crop-area screenshot by pressing Mod + printscreen
+
+# crop-area screenshot by pressing Mod + printscreen
 bindsym $mod+Print exec gnome-screenshot -a
+
+# autostart i3wsr:
+exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config /static/config/i3/i3wsr.toml

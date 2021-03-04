@@ -1,0 +1,7 @@
+[options]
+use_instance = true # (f.ex. to get different web app names)
+remove_duplicates = true
+
+[aliases]
+"gnome-terminal-server" = "Term"
+"app.asana.com__0_113160626860794_list" = "Asana"
