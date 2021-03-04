@@ -1,0 +1,20 @@
+- name: link scripts to /usr/bin
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+
+  tasks:
+
+  - name: create list of scripts
+    find:
+      paths: '{{ base_path }}/scripts/'
+    register: scripts
+
+  - name: create symlinks to scripts
+    file:
+      # Extract filename without path and extension:
+      dest: '/usr/bin/{{ item.path | basename | splitext | first }}'
+      src: '{{ item.path }}'
+      state: link
+    loop: '{{ scripts.files }}' # Loop over files from previous task
+    become: true
