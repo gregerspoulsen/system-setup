@@ -1,0 +1,7 @@
+name: coding
+parent: default
+matches:
+
+  # Ansible Playbook Local
+  - trigger: ";apl" 
+    replace: "ansible-playbook -i localhost "

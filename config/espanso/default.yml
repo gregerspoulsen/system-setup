@@ -26,39 +26,6 @@ matches:
           format: "%Y%m%d"
           offset: 86400
 
-  # Names
-  - trigger: ";gp"
-    replace: "gregerspoulsen" 
-
-
-  # Greetings
-  - trigger: ";mvh"
-    replace: "Med venlig hilsen\nGregers"
-
   # Symbols
   - trigger: ";cm"
     replace: "✔ "
-
-  # Shell commands
-  - trigger: ":shell"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo Hello from your shell"
-
-  # Daily Routines
-  - trigger: ";dle" #Daily Log Entry Template
-    replace: |
-              __$|$__
-              The right way to spend my time?
-
-
-  # Ansible
-  - trigger: ";apl" # Ansible Playbook Local
-    replace: "ansible-playbook -i localhost "
-
-  # E-mail
-  - trigger: ";wem" # Work Email
-    replace: "gp@airborneinstruments.dk"
