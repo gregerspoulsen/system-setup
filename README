@@ -1,7 +1,29 @@
 
 
+# Introduction
+Basic setup for Ubuntu based system with i3 window manger. 
+
+Features:
+* i3wm - tiling window manager
+  - watch the first videos on https://i3wm.org/screenshots/ for an introduction.
+  - i3wsr - automatically update workspace names from content
+* espanso - text expansion
+  - automatically creates symlinks to user supplied configs in /static/personal/espanso/
+* chromium - base version of chrome
+* vscode - Visual Studio Code
+* msteams - Microsoft Teams
+* thunderbird
+  - requires manual configuration
+  - install addon: owl
+  - open settings for owl addon to add profile
+* web app links
+  - add scripts/* to /usr/bin for easy access from dmenu
+  - standard includes webapps like asana, google calendar, miro, dynalist
+* remmina - access Windows machines through RDP
 
 
-## cdKeyboard shortcuts
+
+
+## Keyboard Shortcuts
 
 Print-Screen: Opens gnome-screenshot tool
