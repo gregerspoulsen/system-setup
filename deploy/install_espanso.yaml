@@ -21,16 +21,16 @@
       src: '{{ base_path }}/config/espanso'
       dest: "{{ lookup('env', 'HOME') }}/.config/espanso"
       state: link
-    become: gp
+    become: "{{ user }}"
 
   - name: find personal espanso configs
     find:
       paths: '{{ base_path }}/personal/espanso/'
     register: configs
-
+    
   - name: create symlink to personal configs
     file:
-      dest: '{{ base_path }}/config/espanso/user/{{ item.path | basename }}'
+      dest: '{{ base_path }}/config/espanso/user/linked/{{ item.path | basename }}'
       src: '{{ item.path }}'
       state: link
     loop: '{{ configs.files }}' # Loop over files from previous task
