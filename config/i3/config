@@ -186,11 +186,14 @@ bar {
 # mod+p to move workspace to other screen:
 bindsym $mod+p move workspace to output right
 
-# interactive screenshot by pressing printscreen
+# Interactive screenshot by pressing printscreen
 bindsym Print exec gnome-screenshot -i 
 
-# crop-area screenshot by pressing Mod + printscreen
+# Crop-area screenshot by pressing Mod + printscreen
 bindsym $mod+Print exec gnome-screenshot -a
 
-# autostart i3wsr:
+# Autostart i3wsr:
 exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config /static/config/i3/i3wsr.toml
+
+# Map mod+b to workspace 10 - used for browser
+bindsym $mod+b workspace number $ws10
