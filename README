@@ -29,5 +29,7 @@ Workspaces
 
 ## Keyboard Shortcuts
 
-Print-Screen: Opens gnome-screenshot tool
+Print-Screen: gnome-screenshot tool
 ctrl+$mod+N: Setup workspace (ctrl+$mod+1 setups productivity workspace with apps)
+$mod + Pause: System Monitor
+$mod + F12: Control Center

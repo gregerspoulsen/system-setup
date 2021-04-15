@@ -199,3 +199,9 @@ exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config /static/config/i3/i3
 bindsym $mod+b workspace number $ws10
 
 bindsym $mod+Ctrl+1 exec /static/config/i3/workspaces/productivity.sh
+
+# Gnome System Monitor
+bindsym $mod+Pause exec gnome-system-monitor
+
+# Gnome Control Center
+bindsym $mod+F12 exec gnome-control-center
