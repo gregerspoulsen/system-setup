@@ -1,0 +1,30 @@
+// Productivity Workspace
+// Asana + Dynalist
+
+{
+   // this is a manually added container to restore the horizontal split
+   "layout": "splith",
+   "percent": 0.5,
+   "type": "con",
+   "nodes": [
+      {
+         "swallows": [
+            {
+            "class": "^Chromium$",
+            "instance": "^app\\.asana\\.com"
+            }
+         ],
+         "type": "con"
+      },
+
+      {
+         "swallows": [
+            {
+            "class": "^Chromium$",
+            "instance": "^dynalist\\.io$"
+            }
+         ],
+         "type": "con"
+      }
+   ]
+}

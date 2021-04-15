@@ -197,3 +197,5 @@ exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config /static/config/i3/i3
 
 # Map mod+b to workspace 10 - used for browser
 bindsym $mod+b workspace number $ws10
+
+bindsym $mod+Ctrl+1 exec /static/config/i3/workspaces/productivity.sh
