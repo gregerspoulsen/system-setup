@@ -22,8 +22,12 @@ Features:
 * remmina - access Windows machines through RDP
 
 
+Workspaces
+* 1 - Productivity (Asana + Dynalist)
+* 10 - Browsing. Can be accessed with $mod+0 or $mod+b
 
 
 ## Keyboard Shortcuts
 
 Print-Screen: Opens gnome-screenshot tool
+ctrl+$mod+N: Setup workspace (ctrl+$mod+1 setups productivity workspace with apps)
