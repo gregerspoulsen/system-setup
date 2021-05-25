@@ -10,8 +10,12 @@
       name: cargo
     become: true
     
+  - name: Install libxcb1-dev - required to build
+    apt:
+      name: libxcb1-dev
+    become: true
 
-  - name: Setup Snap Plugs
+  - name: Compile and install i3wsr
     become: yes
     become_method: sudo
     changed_when: false
