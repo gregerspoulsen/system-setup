@@ -1,6 +1,8 @@
 ---
 - name: install git
   hosts: localhost 
+  vars_files:
+    - vars.yaml
 
   tasks:
   - name: install git
@@ -8,3 +10,14 @@
       name: git
     become: true
 
+  - name: set identity email
+    git_config:
+      name: user.email
+      scope: global
+      value: "{{ email }}"
+      
+  - name: set identity user name
+    git_config:
+      name: user.name
+      scope: global
+      value: "{{ name }}"
