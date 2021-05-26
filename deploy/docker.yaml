@@ -1,0 +1,18 @@
+- name: install docker
+  hosts: localhost
+  vars_files:
+  - vars.yaml
+
+  tasks:
+
+  - name: Install docker
+    apt:
+      name: docker.io
+    become: true
+
+  - name: Add user to docker group
+    user:
+      name: '{{ user }}'
+      groups: docker
+      append: yes
+    become: True

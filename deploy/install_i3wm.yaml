@@ -5,9 +5,14 @@
 
   tasks:
 
+  - name: Install i3wm
+    apt:
+      name: i3
+    become: true
+
   - name: create symlink to config
     file:
       src: '{{ base_path }}/config/i3'
-      dest: "{{ lookup('env', 'HOME') }}.config/i3"
+      dest: "{{ lookup('env', 'HOME') }}/.config/i3"
       state: link
     become: gp

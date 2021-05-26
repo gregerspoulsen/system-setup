@@ -1,0 +1,28 @@
+- name: install LiClipse
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+  tasks:
+
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+      path: /opt/liclipse/
+      state: directory
+      owner: "{{ user }}"
+    become: True
+   
+  - name: Get and unpack source
+    ansible.builtin.unarchive:
+      src: https://www.mediafire.com/file/ve681xsdgovki7q/liclipse_7.3.0_linux.gtk.x86_64.tar.gz
+      dest: /opt/
+      remote_src: yes
+    #become: True
+    
+  - name: Create link in path
+    ansible.builtin.file:
+      src: /opt/liclipse/LiClipse
+      dest: /usr/bin/liclipse
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      state: link
+    become: True
