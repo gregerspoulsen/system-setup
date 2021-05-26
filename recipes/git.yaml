@@ -3,6 +3,7 @@
   hosts: localhost 
   vars_files:
     - vars.yaml
+    - "{{ personal_vars }}"
 
   tasks:
   - name: install git
