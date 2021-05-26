@@ -2,6 +2,7 @@
   hosts: localhost
   vars_files:
     - vars.yaml
+    - {{ peronal_vars }}
 
   tasks:
 

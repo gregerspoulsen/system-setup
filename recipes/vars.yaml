@@ -1,4 +1,3 @@
-base_path: /static/
-user: gp
-name: "Gregers Poulsen"
-email: "gp@airborneinstruments.dk"
+base_path: /sytup/base/
+personal_dir: /sytup/personal/
+personal_vars: {{ (personal_dir, 'recipes','personal_vars.yaml') | path_join }}
