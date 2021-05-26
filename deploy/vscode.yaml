@@ -16,3 +16,4 @@
       - littlefoxteam.vscode-python-test-adapter
       - ms-python.python
       - ms-python.vscode-pylance
+      - eamodio.gitlens
