@@ -2,7 +2,10 @@
   hosts: localhost
   vars_files:
     - vars.yaml
-
+    - "{{ personal_vars }}"
+  vars:
+    # Directory for links to personal config files
+    linked_dir: "{{ (base_path, 'config/espanso/user/linked/') | path_join }}"
   tasks:
 
   - name: install xclip (required by espanso, but not installed automatically)
@@ -21,17 +24,24 @@
       src: '{{ base_path }}/config/espanso'
       dest: "{{ lookup('env', 'HOME') }}/.config/espanso"
       state: link
-    become: "{{ user }}"
+    become: true
+    become_user: "{{ user }}"
 
   - name: find personal espanso configs
     find:
-      paths: '{{ base_path }}/personal/espanso/'
+      paths: '{{ personal_dir }}/config/espanso/'
     register: configs
     
+  - name: create linked dir
+    file:
+      path: linked_dir
+      state: directory
+
   - name: create symlink to personal configs
     file:
-      dest: '{{ base_path }}/config/espanso/user/linked/{{ item.path | basename }}'
+      dest: '{{ ( linked_dir, (item.path | basename) ) | path_join }}'
       src: '{{ item.path }}'
       state: link
     loop: '{{ configs.files }}' # Loop over files from previous task
-    become: gp
+    become: true
+    become_user: "{{ user }}"
