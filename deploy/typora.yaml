@@ -1,0 +1,11 @@
+---
+- name: install typora
+  hosts: localhost 
+
+  tasks:
+  - name: snap install typora
+    snap:
+      name: typora
+      classic: true
+    become: true
+

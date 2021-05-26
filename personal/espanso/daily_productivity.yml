@@ -1,0 +1,10 @@
+name: daily_productivity
+parent: default
+
+matches:
+
+  # Daily Routines
+  - trigger: ";dle" #Daily Log Entry Template
+    replace: |
+              __$|$__
+              The right way to spend my time?

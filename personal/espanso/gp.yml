@@ -1,0 +1,16 @@
+name: gp
+parent: default
+
+matches:
+
+  # Names
+  - trigger: ";gp"
+    replace: "gregerspoulsen" 
+
+  # Greetings
+  - trigger: ";mvh"
+    replace: "Med venlig hilsen\nGregers"
+
+  # E-mail
+  - trigger: ";wem" # Work Email
+    replace: "gp@airborneinstruments.dk"
