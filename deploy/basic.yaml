@@ -5,3 +5,5 @@
  - import_playbook: chromium.yaml
  - import_playbook: i3wsr.yaml
  - import_playbook: link_scripts.yaml
+ - import_playbook: git.yaml
+ - import_playbook: hg.yaml

@@ -1,0 +1,11 @@
+---
+- name: install mercurial
+  hosts: localhost 
+  vars_files:
+    - vars.yaml
+
+  tasks:
+  - name: install hg
+    apt:
+      name: mercurial
+    become: true
