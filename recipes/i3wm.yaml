@@ -2,8 +2,7 @@
   hosts: localhost
   vars_files:
     - vars.yaml
-    - {{ peronal_vars }}
-
+    - "{{ personal_vars }}"
   tasks:
 
   - name: Install i3wm
@@ -16,4 +15,5 @@
       src: '{{ base_path }}/config/i3'
       dest: "{{ lookup('env', 'HOME') }}/.config/i3"
       state: link
-    become: gp
+    become: true
+    become_user: "{{ user }}"
