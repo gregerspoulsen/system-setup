@@ -1,7 +1,7 @@
 ---
- - import_playbook: install_vscode.yaml
- - import_playbook: install_espanso.yaml
- - import_playbook: install_i3wm.yaml
+ - import_playbook: vscode.yaml
+ - import_playbook: espanso.yaml
+ - import_playbook: i3wm.yaml
  - import_playbook: chromium.yaml
  - import_playbook: i3wsr.yaml
  - import_playbook: link_scripts.yaml
