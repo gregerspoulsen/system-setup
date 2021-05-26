@@ -9,3 +9,10 @@
       classic: true
     become: true
 
+  - name: install extensions
+    ansible.builtin.command: code --install-extension {{ item }}
+    loop: 
+      - hbenl.vscode-test-explorer
+      - littlefoxteam.vscode-python-test-adapter
+      - ms-python.python
+      - ms-python.vscode-pylance
