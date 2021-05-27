@@ -15,7 +15,7 @@
       name: libxcb1-dev
     become: true
 
-  - name: Compile and install i3wsr
+  - name: Compile and install i3wsr (takes several minutes)
     become: yes
     become_method: sudo
     changed_when: false
