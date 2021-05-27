@@ -34,7 +34,7 @@
     
   - name: create linked dir
     file:
-      path: linked_dir
+      path: "{{ linked_dir }}"
       state: directory
 
   - name: create symlink to personal configs
