@@ -13,7 +13,7 @@ sudo chown $USER:$USER /sytup
 # Install ansible:
 sudo apt update
 sudo apt install -y python3-pip
-pip3 install --user "ansible>=4"
+sudo pip3 install "ansible>=4"
 
 # Install git
 sudo apt -y install git
