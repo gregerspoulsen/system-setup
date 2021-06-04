@@ -11,11 +11,12 @@ sudo mkdir -p /sytup
 sudo chown $USER:$USER /sytup
 
 # Install ansible:
-sudo apt install python3-pip
-pip3 install --user "ansible>=4"
+sudo apt update
+sudo apt install -y python3-pip
+sudo pip3 install "ansible>=4"
 
 # Install git
-sudo apt install git
+sudo apt -y install git
 
 # Deploy sytup base repo, skip if exist
 if [[ -d "/sytup/base" ]]

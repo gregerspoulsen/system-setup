@@ -7,3 +7,4 @@
  - import_playbook: link_scripts.yaml
  - import_playbook: git.yaml
  - import_playbook: hg.yaml
+ - import_playbook: docker.yaml
