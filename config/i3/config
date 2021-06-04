@@ -205,3 +205,6 @@ bindsym $mod+Pause exec gnome-system-monitor
 
 # Gnome Control Center
 bindsym $mod+F12 exec gnome-control-center
+
+# Bind dmenu to win+shift+z
+bindsym $mod+shift+z exec dmenu_run
