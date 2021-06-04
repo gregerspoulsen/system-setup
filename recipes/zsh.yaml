@@ -1,0 +1,39 @@
+- name: install zsh
+  hosts: localhost
+  vars_files:
+    - vars.yaml
+    - "{{ personal_vars }}"
+  
+  tasks:
+
+  - name: Install zsh
+    apt:
+      name: zsh
+    become: true
+
+  - name: change user shell to zsh 
+    become: yes
+    user:
+      name: "{{ user }}"
+      shell: /bin/zsh
+
+
+  - name: Install galaxy role 
+    command: "ansible-galaxy install gantsign.antigen"
+
+- hosts: localhost
+  vars_files:
+    - vars.yaml
+    - "{{ personal_vars }}"
+  
+  roles:
+    - role: gantsign.antigen
+      users:
+        - username: "{{ user }}"
+          antigen_libraries:
+            - name: oh-my-zsh
+          antigen_theme:
+            name: robbyrussell # This role has no default theme (unlike the `gantsign.oh-my-zsh` role)
+          antigen_bundles:
+            - name: git # This role has no default bundles/plugins (unlike the `gantsign.oh-my-zsh` role)
+            - name: autojump
