@@ -1,0 +1,9 @@
+- name: install required galaxy roles
+  hosts: localhost
+  
+  tasks:
+
+  - name: Install galaxy role 
+    command: "ansible-galaxy install sicruse.powerline-fonts gantsign.antigen"
+
+
