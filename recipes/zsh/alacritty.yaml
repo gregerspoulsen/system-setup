@@ -1,0 +1,17 @@
+---
+- name: Setup alacritty
+  hosts: localhost 
+  vars_files:
+    - ../vars.yaml
+    - "{{ personal_vars }}"
+
+  tasks:
+  - name: Setup alacritty repo
+    apt_repository:
+      repo: ppa:aslatter/ppa
+    become: true
+
+  - name: Install alacritty
+    apt:
+      name: alacritty
+    become: true
