@@ -1,0 +1,5 @@
+ - import_playbook: galaxy-roles.yaml
+ - import_playbook: powerline_fonts.yaml
+ - import_playbook: alacritty.yaml
+ - import_playbook: zsh.yaml
+ - import_playbook: antigen.yaml
