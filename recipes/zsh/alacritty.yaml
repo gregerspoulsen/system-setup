@@ -15,3 +15,11 @@
     apt:
       name: alacritty
     become: true
+
+  - name: create symlink to config
+    file:
+      src: '{{ base_path }}/config/alacritty'
+      dest: "{{ lookup('env', 'HOME') }}/.config/alacritty"
+      state: link
+    become: true
+    become_user: "{{ user }}"
