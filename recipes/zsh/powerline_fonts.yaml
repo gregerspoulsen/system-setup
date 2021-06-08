@@ -1,0 +1,17 @@
+- name: Install powerline fonts
+  hosts: localhost
+  vars_files:
+    - ../vars.yaml
+    - "{{ personal_vars }}"
+
+
+  roles:
+    - role: sicruse.powerline-fonts
+      powerline_users:              # this role can configure for one or more users
+        - user: "{{ user }}"         # username. Defaults to current user
+
+      powerline_fonts:              # the fonts you want to install. Defaults shown here.
+        - RobotoMono          # the name of these fonts must match the name of the
+        - SourceCodePro       # font directory
+        - DejaVuSansMono
+        - UbuntuMono
