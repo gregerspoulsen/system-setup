@@ -1,0 +1,15 @@
+- name: bootstrap ubuntu system
+  hosts: localhost
+  vars:
+    user: xz
+    pwd: zx
+    salt: 'randomSalt'
+  tasks:
+
+  - name: Add user
+    ansible.builtin.user:
+      name: "{{ user }}"
+      password: "{{pwd|password_hash('sha512', salt)}}"
+      group: sudo
+      update_password: on_create
+    become: True

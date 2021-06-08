@@ -2,3 +2,6 @@ data/
 
 # Ignore links to personal configs:
 config/espanso/user/linked/
+
+#Ignore vagrant dir:
+.vagrant/
