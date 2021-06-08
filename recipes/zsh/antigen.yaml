@@ -1,0 +1,39 @@
+- name: install zsh
+  hosts: localhost
+  vars_files:
+    - ../vars.yaml
+    - "{{ personal_vars }}"
+  
+  pre_tasks:
+
+  - name: Install fzy # Required by enhancd
+    apt:
+      name: fzy
+    become: true
+
+- hosts: localhost
+  vars_files:
+    - ../vars.yaml
+    - "{{ personal_vars }}"
+  
+  roles:
+    - role: gantsign.antigen
+      users:
+        - username: "{{ user }}"
+          antigen_libraries:
+            - name: oh-my-zsh
+          antigen_theme:
+            name: agnoster # This role has no default theme (unlike the `gantsign.oh-my-zsh` role)
+          antigen_bundles:
+            - name: git # This role has no default bundles/plugins (unlike the `gantsign.oh-my-zsh` role)
+            - name: zsh-syntax-highlighting
+              url: zsh-users/zsh-syntax-highlighting
+            - name: pip
+            - name: k # ls with git annotation: https://github.com/supercrabtree/k
+              url: supercrabtree/k
+            - name: enhancd # improved cd command: https://github.com/b4b4r07/enhancd
+              url: b4b4r07/enhancd
+            - name: zsh-autosuggestions # command suggestions
+              url:  zsh-users/zsh-autosuggestions 
+            - name: zsh-completions
+              url:  zsh-users/zsh-completions 
