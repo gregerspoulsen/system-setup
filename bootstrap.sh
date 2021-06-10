@@ -13,6 +13,7 @@ sudo chown $USER:$USER /sytup
 # Install ansible:
 sudo apt update
 sudo apt install -y python3-pip
+sudo apt remove -y ansible # Pip cannot upgrade from below 2.9 as of 20210610
 sudo pip3 install "ansible>=4"
 
 # Install git
