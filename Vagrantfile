@@ -13,22 +13,16 @@ Vagrant.configure("2") do |config|
 
   # Basic Ubuntu Setup with UI:
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "sys_bootstrap/ubuntu_bootstrap.yaml"
-    ansible.provisioning_path = "/vagrant/"
-  end
-
-  # Create User:
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "sys_bootstrap/user.yaml"
+    ansible.playbook = "sys_bootstrap/system_bootstrap.yaml"
     ansible.provisioning_path = "/vagrant/"
     ansible.extra_vars = {
-      user: "gp",
-      pwd: "test"
+      user: "airborne",
+      pwd: "airborne"
     }
   end
 
   # Run sytup Bootstrap:
-  config.vm.provision "shell", path: "bootstrap.sh"
+  #config.vm.provision "shell", path: "bootstrap.sh"
 
 
 end
