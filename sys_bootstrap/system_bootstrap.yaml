@@ -1,0 +1,17 @@
+- name: Set relevant variables
+  hosts: all
+  tasks:
+    - set_fact:
+        user: "airborne"
+        pwd: "airborne" # Can be omitted if user excist
+
+- name: Prepare Ubuntu with
+  import_playbook: ubuntu.yaml
+
+- name: Create user if not present
+  import_playbook: user.yaml
+  vars:
+    user: "{{ user }}"
+    pwd: "{{ pwd }}"
+    
+  

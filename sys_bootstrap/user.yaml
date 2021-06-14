@@ -1,11 +1,11 @@
 - name: bootstrap ubuntu system
-  hosts: localhost
+  hosts: all
   vars:
-    user: xz
-    pwd: zx
+    user: user99
+    pwd: xxx
     salt: 'randomSalt'
+  
   tasks:
-
   - name: Add user
     ansible.builtin.user:
       name: "{{ user }}"
