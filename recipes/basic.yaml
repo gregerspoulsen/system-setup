@@ -17,3 +17,6 @@
  - import_playbook: docker.yaml
    vars:
      user: airborne
+ - import_playbook: zsh/complete.yaml
+   vars:
+     user: airborne
