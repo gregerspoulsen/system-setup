@@ -1,22 +1,15 @@
 - name: install docker
   hosts: localhost
-  
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
+
   tasks:
-
-  - name: "Verify that required string variables are defined"
-    assert:
-      that: 
-        - "{{ item }} is defined"
-      fail_msg: "{{ item }} variable must be defined"
-    with_items:
-      -  user
-
   - name: Install docker
     apt:
       name: docker.io
     become: true
 
-  - name: Add user to docker group
+  - name: "Add user: '{{ user }}' to docker group"
     user:
       name: '{{ user }}'
       groups: docker
