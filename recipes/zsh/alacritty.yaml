@@ -1,9 +1,12 @@
 ---
 - name: Setup alacritty
   hosts: localhost 
-  vars_files:
-    - ../vars.yaml
-    - "{{ personal_vars }}"
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
+    base_path: '/sytup/base'
+    config_dir: "{{ ( base_path, 'config/' ) | path_join }}"
+    src_dir: "{{ ( config_dir, 'alacritty/' ) | path_join }}"
+    dest_dir: "~{{ user }}/.config/alacritty"
 
   tasks:
   - name: Setup alacritty repo
@@ -16,10 +19,10 @@
       name: alacritty
     become: true
 
-  - name: create symlink to config
+  - name: "create config symlink {{ dest_dir }} -> {{ src_dir }}"
     file:
-      src: '{{ base_path }}/config/alacritty'
-      dest: "{{ lookup('env', 'HOME') }}/.config/alacritty"
+      src: "{{ src_dir }}"
+      dest: "{{ dest_dir }}"
       state: link
     become: true
     become_user: "{{ user }}"

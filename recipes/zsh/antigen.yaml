@@ -1,8 +1,5 @@
 - name: install zsh
   hosts: localhost
-  vars_files:
-    - ../vars.yaml
-    - "{{ personal_vars }}"
   
   pre_tasks:
 
@@ -12,9 +9,8 @@
     become: true
 
 - hosts: localhost
-  vars_files:
-    - ../vars.yaml
-    - "{{ personal_vars }}"
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
   
   roles:
     - role: gantsign.antigen

@@ -1,8 +1,7 @@
 - name: Install powerline fonts
   hosts: localhost
-  vars_files:
-    - ../vars.yaml
-    - "{{ personal_vars }}"
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
 
 
   roles:
