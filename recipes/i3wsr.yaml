@@ -1,7 +1,5 @@
 - name: install i3wsr [https://github.com/roosta/i3wsr]
   hosts: localhost
-  vars_files:
-    - vars.yaml
 
   tasks:
     
