@@ -37,4 +37,4 @@ else
     git clone $URL /sytup/personal
 fi
 
-ansible-playbook -i localhost /sytup/base/recipes/basic.yaml
+ansible-playbook /sytup/base/recipes/basic.yaml

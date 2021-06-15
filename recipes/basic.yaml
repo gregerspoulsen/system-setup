@@ -4,7 +4,7 @@
     user: airborne
 #  - import_playbook: espanso.yaml
 #  - import_playbook: i3wm.yaml
-#  - import_playbook: chromium.yaml
+ - import_playbook: chromium.yaml
 #  - import_playbook: i3wsr.yaml
 #  - import_playbook: link_scripts.yaml
  - import_playbook: git.yaml
