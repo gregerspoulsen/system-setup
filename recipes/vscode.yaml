@@ -1,8 +1,8 @@
 ---
-- name: install vscode
+- name: setup vscode
   hosts: localhost
   vars:
-    user: "{{ lookup('env', 'USER') }}" # defaults to current user
+    user: "{{ lookup('env', 'USER') }}" # default to current user
     extensions:
       - hbenl.vscode-test-explorer
       - littlefoxteam.vscode-python-test-adapter
@@ -13,15 +13,17 @@
       - ms-vscode-remote.remote-containers
 
   tasks:
-  - name: install vscode
+  - name: snap install vscode
     snap:
       name: code
       classic: true
     become: true
 
-  - name: install extensions
+  - name: "install extension for user: {{ user }}"
     ansible.builtin.command: 
       cmd: "code --install-extension {{ item }}"
     loop: "{{ extensions }}"
+    register: extinstall
     become: true
     become_user: "{{ user }}"
+    changed_when: "'already installed' not in extinstall.stdout"
