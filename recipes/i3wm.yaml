@@ -1,19 +1,21 @@
-- name: install i3-wm
+- name: Setup i3-wm
   hosts: localhost
-  vars_files:
-    - vars.yaml
-    - "{{ personal_vars }}"
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
+    base_path: '/sytup/base'
+    config_dir: "{{ ( base_path, 'config/' ) | path_join }}"
+    src_dir: "{{ ( config_dir, 'i3/' ) | path_join }}"
+    dest_dir: "~{{ user }}/.config/i3"
   tasks:
-
-  - name: Install i3wm
+  - name: Install i3wm (apt)
     apt:
       name: i3
     become: true
 
-  - name: create symlink to config
+  - name: "create config symlink {{ dest_dir }} -> {{ src_dir }}"
     file:
-      src: '{{ base_path }}/config/i3'
-      dest: "{{ lookup('env', 'HOME') }}/.config/i3"
+      src: "{{ src_dir }}"
+      dest: "{{ dest_dir }}"
       state: link
     become: true
     become_user: "{{ user }}"
