@@ -3,7 +3,7 @@
   hosts: localhost 
   vars:
     user: "{{ lookup('env', 'USER') }}" # default to current user
-    base_path: '/sytup/base'
+    base_path: '~{{ user }}/sytup/base'
     config_dir: "{{ ( base_path, 'config/' ) | path_join }}"
     src_dir: "{{ ( config_dir, 'alacritty/' ) | path_join }}"
     dest_dir: "~{{ user }}/.config/alacritty"
