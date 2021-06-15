@@ -6,9 +6,11 @@ Vagrant.configure("2") do |config|
 
   # VM Configuration
   config.vm.provider :virtualbox do |v|
-    v.gui = true # Display UI
+    v.gui = true # Display UI 
     v.memory = 4096 # 4GB Memory
     v.customize ["modifyvm", :id, "--vram", "128"] # 128 MB Video Memory
+    v.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+    v.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
   end
 
   # Basic Ubuntu Setup with UI:
@@ -16,15 +18,15 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "sys_bootstrap/system_bootstrap.yaml"
     ansible.provisioning_path = "/vagrant/"
     ansible.extra_vars = {
-      user: "airborne",
-      pwd: "airborne"
+      user: "gp",
+      pwd: "test"
     }
   end
 
   # Run sytup Bootstrap:
   config.vm.provision "shell",
     path: "bootstrap.sh",
-    args: "airborne"
+    args: ["gp", "https://github.com/gregerspoulsen/sys-setup-gp.git"]
   
 
 end
