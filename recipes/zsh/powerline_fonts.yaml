@@ -1,8 +1,20 @@
+- name: Install fontconfig
+  hosts: localhost
+
+  roles:
+    - role: sicruse.powerline-fonts
+      tags: packages
+
+  tasks:
+    - name: remove tmp dir for user install
+      file:
+        path: /tmp/powerline-fonts
+        state: absent
+
 - name: Install powerline fonts
   hosts: localhost
   vars:
     user: "{{ lookup('env', 'USER') }}" # default to current user
-
 
   roles:
     - role: sicruse.powerline-fonts
