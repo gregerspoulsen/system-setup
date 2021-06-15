@@ -10,6 +10,7 @@
     ansible.builtin.user:
       name: "{{ user }}"
       password: "{{pwd|password_hash('sha512', salt)}}"
-      group: sudo
+      groups: sudo
+      create_home: yes
       update_password: on_create
     become: True
