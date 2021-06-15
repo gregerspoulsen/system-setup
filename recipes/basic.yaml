@@ -3,7 +3,7 @@
    hosts: localhost
    vars_files:
      - vars.yaml
-     - ~/sytup/personal/personal_vars.yaml # default to current user
+     - ~{{ user }}/sytup/personal/personal_vars.yaml # default to current user
 
    tasks:
     # Crude way of passing variables to all playbooks, should be improved
