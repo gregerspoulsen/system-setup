@@ -1,9 +1,16 @@
 ---
 - name: install vscode
   hosts: localhost
-  vars_files:
-    - vars.yaml
-    - "{{ personal_vars }}"
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # defaults to current user
+    extensions:
+      - hbenl.vscode-test-explorer
+      - littlefoxteam.vscode-python-test-adapter
+      - ms-python.python
+      - ms-python.vscode-pylance
+      - eamodio.gitlens
+      - ms-azuretools.vscode-docker
+      - ms-vscode-remote.remote-containers
 
   tasks:
   - name: install vscode
@@ -13,14 +20,8 @@
     become: true
 
   - name: install extensions
-    ansible.builtin.command: code --install-extension {{ item }}
-    loop:
-      - hbenl.vscode-test-explorer
-      - littlefoxteam.vscode-python-test-adapter
-      - ms-python.python
-      - ms-python.vscode-pylance
-      - eamodio.gitlens
-      - ms-azuretools.vscode-docker
-      - ms-vscode-remote.remote-containers
+    ansible.builtin.command: 
+      cmd: "code --install-extension {{ item }}"
+    loop: "{{ extensions }}"
     become: true
     become_user: "{{ user }}"

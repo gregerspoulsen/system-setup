@@ -1,11 +1,9 @@
 ---
 - name: install git
   hosts: localhost 
-  vars_files:
-    - vars.yaml
-    - "{{ personal_vars }}"
-
+ 
   tasks:
+
   - name: install git
     apt:
       name: git
@@ -16,9 +14,11 @@
       name: user.email
       scope: global
       value: "{{ email }}"
+    when: email is defined
       
   - name: set identity user name
     git_config:
       name: user.name
       scope: global
       value: "{{ name }}"
+    when: name is defined
