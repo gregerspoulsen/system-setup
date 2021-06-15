@@ -1,0 +1,16 @@
+
+- hosts: localhost
+  
+  roles:
+    # Configure Keyboard:
+    - role: gantsign.keyboard
+      keyboard_model: pc105
+      keyboard_layout: dk
+    
+    # Configure locale
+    - role: oefenweb.locales
+      locales_present:
+        - en_DK.UTF-8
+        - en_US.UTF-8
+      locales_default:
+        lang: en_DK.UTF-8
