@@ -36,6 +36,8 @@ sudo pip3 install "ansible>=4"
 
 # Install required galaxy roles
 ansible-galaxy install sicruse.powerline-fonts gantsign.antigen
+# To enable the user to execute the plays when logged in, install for user:
+sudo -u $TARGET_USER ansible-galaxy install sicruse.powerline-fonts gantsign.antigen
 
 # Install git
 sudo apt -y install git
