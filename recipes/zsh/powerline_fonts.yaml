@@ -6,6 +6,8 @@
 
   roles:
     - role: sicruse.powerline-fonts
+      become: true
+      become_user: "{{ user }}"
       powerline_users:              # this role can configure for one or more users
         - user: "{{ user }}"         # username. Defaults to current user
 
