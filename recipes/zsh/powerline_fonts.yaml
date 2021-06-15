@@ -28,3 +28,11 @@
         - SourceCodePro       # font directory
         - DejaVuSansMono
         - UbuntuMono
+  
+  tasks:
+    - name: remove tmp dir
+      become: true
+      become_user: "{{ user }}"
+      file:
+        path: /tmp/powerline-fonts
+        state: absent
