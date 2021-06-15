@@ -1,10 +1,15 @@
 - name: install docker
   hosts: localhost
-  vars_files:
-  - vars.yaml
-  - "{{personal_vars}}"
-
+  
   tasks:
+
+  - name: "Verify that required string variables are defined"
+    assert:
+      that: 
+        - "{{ item }} is defined"
+      fail_msg: "{{ item }} variable must be defined"
+    with_items:
+      -  user
 
   - name: Install docker
     apt:

@@ -12,4 +12,6 @@
      name: "Airborne User"
      email: "airborne@this.com"
 #  - import_playbook: hg.yaml
-#  - import_playbook: docker.yaml
+ - import_playbook: docker.yaml
+   vars:
+     user: airborne
