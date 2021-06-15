@@ -33,3 +33,12 @@ Print-Screen: gnome-screenshot tool
 ctrl+$mod+N: Setup workspace (ctrl+$mod+1 setups productivity workspace with apps)
 $mod + Pause: System Monitor
 $mod + F12: Control Center
+
+# Creating a VM with Vagrant
+
+1. Clone this repo to a local folder
+2. Edit line 21 and 22 in Vagrantfile with desired user name and password
+3. Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit details in
+   personal_vars.yaml as desired.
+4. Change line 29 in Vagrantfile with the user from earlier and your Fork
+   of the personal repo.
