@@ -1,22 +1,22 @@
 ---
+ - name: Set relevant variables
+   hosts: localhost
+   tasks:
+    # Crude way of passing variables to all playbooks, should be improved
+    # in the future by converting to a role:
+     - set_fact:
+         user: "airborne"
+         pwd: "airborne" # Can be omitted if user excist
+         fullname: "Airborne User"
+         email: "airborne@this.com"
+  
  - import_playbook: vscode.yaml
-   vars:
-    user: airborne
 #  - import_playbook: espanso.yaml
  - import_playbook: i3wm.yaml
-   vars:
-     user: airborne
  - import_playbook: chromium.yaml
  - import_playbook: i3wsr.yaml
 #  - import_playbook: link_scripts.yaml
  - import_playbook: git.yaml
-   vars:
-     fullname: "Airborne User"
-     email: "airborne@this.com"
 #  - import_playbook: hg.yaml
  - import_playbook: docker.yaml
-   vars:
-     user: airborne
  - import_playbook: zsh/complete.yaml
-   vars:
-     user: airborne
