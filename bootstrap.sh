@@ -16,6 +16,9 @@ sudo apt install -y python3-pip
 sudo apt remove -y ansible # Pip cannot upgrade from below 2.9 as of 20210610
 sudo pip3 install "ansible>=4"
 
+# Install required galaxy roles
+ansible-galaxy install sicruse.powerline-fonts gantsign.antigen
+
 # Install git
 sudo apt -y install git
 
