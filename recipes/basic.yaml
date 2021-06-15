@@ -1,14 +1,17 @@
 ---
  - name: Set relevant variables
    hosts: localhost
+   vars_files:
+     - vars.yaml
+     - ~/sytup/personal/personal_vars.yaml # default to current user
+
    tasks:
     # Crude way of passing variables to all playbooks, should be improved
     # in the future by converting to a role:
      - set_fact:
-         user: "airborne"
-         pwd: "airborne" # Can be omitted if user excist
-         fullname: "Airborne User"
-         email: "airborne@this.com"
+         user: "{{ user }}"
+         email: " {{ email }}"
+         fullname: " {{ fullname }}"
   
  - import_playbook: vscode.yaml
 #  - import_playbook: espanso.yaml
@@ -20,3 +23,4 @@
 #  - import_playbook: hg.yaml
  - import_playbook: docker.yaml
  - import_playbook: zsh/complete.yaml
+ - import_playbook: locale.yaml
