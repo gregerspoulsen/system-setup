@@ -3,6 +3,23 @@
 # Introduction
 Basic setup for Ubuntu based system with i3 window manger. 
 
+# Purpose
+The purpose of this project is two fold:
+* To be able to take your preferred development environment with you whereever
+  your journey takes you - you should be able to easily re-create it everywhere
+* Make it really simple to share tricks that makes your life as developer more
+  enjoyable.
+
+# Principles
+To the author that currently means:
+* Create an environment based on recipes so it can be recreated everywhere
+* Support both VM based and native setups.
+* Create a base that is really useful on its own
+* Make it possible to extend it with personal preferences with the same
+  portability
+
+
+
 Features:
 * i3wm - tiling window manager
   - watch the first videos on https://i3wm.org/screenshots/ for an introduction.
