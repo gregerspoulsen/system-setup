@@ -27,8 +27,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",
     path: "bootstrap.sh",
     args: ["gp", "https://github.com/gregerspoulsen/sys-setup-gp.git"],
-    keep_color: True,
-    reboot: True
+    keep_color: true,
+    reboot: true
   
 
 end
