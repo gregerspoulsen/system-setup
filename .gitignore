@@ -5,3 +5,6 @@ config/espanso/user/linked/
 
 #Ignore vagrant dir:
 .vagrant/
+
+# Ignore user variable file
+.vagrantuser
