@@ -1,0 +1,4 @@
+user: gp
+pwd: test
+host_mount: true
+user_repo: https://github.com/gregerspoulsen/sys-setup-gp.git

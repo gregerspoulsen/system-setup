@@ -1,7 +1,30 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Install required vagrant plugins:
+required_plugins = %w[nugrant]
+plugins_to_install = required_plugins.reject { |plugin| Vagrant.has_plugin? plugin }
+unless plugins_to_install.empty?
+  puts "Installing plugins: #{plugins_to_install.join(' ')}"
+  if system "vagrant plugin install #{plugins_to_install.join(' ')}"
+    exec "vagrant #{ARGV.join(' ')}"
+  else
+    abort 'Installation of one or more plugins has failed. Aborting.'
+  end
+end
+
+# Configure VM
 Vagrant.configure("2") do |config|
+
+  # Default values can be overwritten with .vagrantuser. See .vagrantuser.example
+  config.user.defaults = {
+    "user" => "airborne", 
+    "pwd" => "airborne",
+    "user_repo" => "https://github.com/gregerspoulsen/sys-setup-gp.git",
+    "host_mount" => false # Map host folder at ~/sytup/
+  }
+
+
   config.vm.box = "ubuntu/focal64" # Ubuntu 20.04 64-bit
 
   # VM Configuration
@@ -18,15 +41,21 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "sys_bootstrap/system_bootstrap.yaml"
     ansible.provisioning_path = "/vagrant/"
     ansible.extra_vars = {
-      user: "gp",
-      pwd: "test"
+      user: config.user.user,
+      pwd: config.user.pwd
     }
   end
+
+  # Mount host dir if set:
+  if config.user.host_mount then
+    config.vm.synced_folder "../", "/home/"+config.user.user+"/sytup"
+  end
+  
 
   # Run sytup Bootstrap:
   config.vm.provision "shell",
     path: "bootstrap.sh",
-    args: ["gp", "https://github.com/gregerspoulsen/sys-setup-gp.git"],
+    args: [config.user.user, config.user.user_repo],
     keep_color: true,
     reboot: true
   
