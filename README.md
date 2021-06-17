@@ -54,13 +54,9 @@ $mod + F12: Control Center
 # Creating a VM with Vagrant
 
 1. Clone this repo to a local folder
-2. Edit line 21 and 22 in Vagrantfile with desired user name and password
-3. Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit details in
+2. [optional] Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit details in
    personal_vars.yaml as desired.
-4. Change line 29 in Vagrantfile with the user from earlier and your fork
-   of the personal repo.
+3. [optional] Create a .vagrantuser file, see .vagrantuser.example
 5. `vagrant up`
 6. Provision will now run and take quite some time, enjoy a break :)
-7. When provisioning is finished reboot the machine, f.ex. with `vagrant halt`
-   and `vagrant up`
 8. Take it for a spin...
