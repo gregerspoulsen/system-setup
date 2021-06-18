@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       pwd: config.user.pwd
     }
   end
-
+  
   # Mount host dir if set:
   if config.user.host_mount then
     config.vm.synced_folder "../", "/home/"+config.user.user+"/sytup"
@@ -55,9 +55,6 @@ Vagrant.configure("2") do |config|
   # Run sytup Bootstrap:
   config.vm.provision "shell",
     path: "bootstrap.sh",
-    args: [config.user.user, config.user.user_repo],
-    keep_color: true,
-    reboot: true
-  
+    args: [config.user.user, config.user.user_repo]
 
 end
