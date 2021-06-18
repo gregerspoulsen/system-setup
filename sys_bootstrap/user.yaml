@@ -14,3 +14,13 @@
       create_home: yes
       update_password: on_create
     become: True
+
+  - name: Set home dir owner
+    # In development mode the home dir might have been created by vagrant as root
+    ansible.builtin.file:
+      path: ~{{ user }}
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      state: directory
+      recurse: yes
+    become: True
