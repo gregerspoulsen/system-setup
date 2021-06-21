@@ -3,7 +3,7 @@
 # 
 # The first argument to this the target user to apply the setup to, default is
 # current user
-# The second a potential link for personal repo to use, default is
+# The second a potential link for user repo to use, default is
 # https://github.com/gregerspoulsen/sys-setup-gp.git
 
 # Exit on error:
@@ -20,7 +20,7 @@ if [ "${MAIN_DIR:0:1}" == \~ ]; then
 fi
 
 echo "Installing for user: $TARGET_USER at $MAIN_DIR"
-echo "Using personal repo: $USER_REPO"
+echo "Using user repo: $USER_REPO"
 
 # Create main dir if not excisting
 sudo -u $TARGET_USER mkdir -p $MAIN_DIR
@@ -50,14 +50,14 @@ else
     sudo -u $TARGET_USER git clone https://github.com/gregerspoulsen/system-setup.git $MAIN_DIR/base
 fi
 
-# Deploy personal repo, skip if exist
-if [[ -d "$MAIN_DIR/personal" ]]
+# Deploy user repo, skip if exist
+if [[ -d "$MAIN_DIR/user" ]]
 then
-    echo "$MAIN_DIR/personal already exists - left intact."
+    echo "$MAIN_DIR/user already exists - left intact."
 else
     # Use first argument to script - if unset use gp:
     URL=$USER_REPO
-    sudo -u $TARGET_USER git clone $URL $MAIN_DIR/personal
+    sudo -u $TARGET_USER git clone $URL $MAIN_DIR/user
 fi
 
 # Set correct owner of $MAIN_DIR

@@ -25,7 +25,7 @@ Features:
   - watch the first videos on https://i3wm.org/screenshots/ for an introduction.
   - i3wsr - automatically update workspace names from content
 * espanso - text expansion
-  - automatically creates symlinks to user supplied configs in /static/personal/espanso/
+  - automatically creates symlinks to user supplied configs in user/espanso/
 * chromium - base version of chrome
 * vscode - Visual Studio Code
 * msteams - Microsoft Teams
@@ -55,17 +55,18 @@ $mod + F12: Control Center
 
 1. git clone 
 2. [optional] Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit
-   details in personal_vars.yaml as desired. Be aware that the user used here
-   must exist on the system, edit .vagrantuser accordingly.
+   details in user_vars.yaml as desired. Be aware that the user set in this
+   repo is overridden when using vagrant (either .vagrantuser or as default:
+   airborne).
 3. [optional] Create a .vagrantuser file, see .vagrantuser.example
 5. `vagrant up`
-6. Provision will now. It takes quite some time - enjoy a break :)
+6. Provision will now run. It takes quite some time - enjoy a break :)
 8. Take it for a spin...
 
 # Developing
 
 To iterate quicker when developing the vagrant code you can create a folder
-with the two folders base and personal and set host_mount = true in
+with the two folders base and user and set host_mount = true in
 .vagrantuser. Instead of cloning from github vagrant will then mount the repos
 on the host at ~/sytup.
 

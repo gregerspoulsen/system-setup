@@ -3,8 +3,8 @@
   vars:
     user: "{{ lookup('env', 'USER') }}" # default to current user
     base_path: '~{{ user }}/sytup/base'
-    personal_dir: '~{{ user }}/sytup/personal'
-    # Directory for links to personal config files
+    user_dir: '~{{ user }}/sytup/user'
+    # Directory for links to user config files
     linked_dir: "{{ (base_path, 'config/espanso/user/linked/') | path_join }}"
   tasks:
 
@@ -27,9 +27,9 @@
     become: true
     become_user: "{{ user }}"
 
-  - name: find personal espanso configs
+  - name: find user espanso configs
     find:
-      paths: '{{ personal_dir }}/config/espanso/'
+      paths: '{{ user_dir }}/config/espanso/'
     register: configs
     become: true
     become_user: "{{ user }}"
@@ -41,7 +41,7 @@
     become: true
     become_user: "{{ user }}"
 
-  - name: create symlink to personal configs
+  - name: create symlink to user configs
     file:
       dest: '{{ ( linked_dir, (item.path | basename) ) | path_join }}'
       src: '{{ item.path }}'
