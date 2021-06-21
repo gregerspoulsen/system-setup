@@ -53,8 +53,9 @@ $mod + F12: Control Center
 
 # Creating a VM with Vagrant
 
-1. git clone 
-2. [optional] Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit
+1. git clone https://github.com/gregerspoulsen/system-setup.git
+2. [optional] If you want your customizations to be available from multiple
+   machines, fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit
    details in user_vars.yaml as desired. Be aware that the user set in this
    repo is overridden when using vagrant (either .vagrantuser or as default:
    airborne).
@@ -67,8 +68,9 @@ $mod + F12: Control Center
 
 To iterate quicker when developing the vagrant code you can create a folder
 with the two folders base and user and set host_mount = true in
-.vagrantuser. Instead of cloning from github vagrant will then mount the repos
-on the host at ~/sytup.
+.vagrantuser. Instead of cloning from github vagrant will then mount the the
+parent folder of base on the host at ~/sytup.
 
-You should also be aware of vagrants snapshot function as this enables to create
-and restore a box to avoid building everything from scratch each time.
+You should also be aware of the vagrants snapshot function as this enables
+creating and restoring a box to avoid building everything from scratch each
+time.
