@@ -17,7 +17,7 @@ set -e
 TARGET_USER=${1:-$USER}
 USER_REPO=${2:-https://github.com/gregerspoulsen/sys-setup-gp.git}
 MAIN_DIR=~"$TARGET_USER/sytup"
-EXTRA_VARS=${3-user=$TARGET_USER}
+EXTRA_VARS=${3:-user=$TARGET_USER}
 
 # Expand ~ in MAIN_DIR
 if [ "${MAIN_DIR:0:1}" == \~ ]; then
@@ -67,4 +67,5 @@ fi
 
 # Set correct owner of $MAIN_DIR
 sudo chown -R $TARGET_USER:$TARGET_USER $MAIN_DIR
-ansible-playbook --extra-vars $EXTRA_VARS $MAIN_DIR/base/recipes/basic.yaml
+echo "running provisining with --extra-vars: $EXTRA_VARS"
+ansible-playbook --extra-vars "$EXTRA_VARS" $MAIN_DIR/base/recipes/basic.yaml

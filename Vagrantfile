@@ -26,11 +26,11 @@ Vagrant.configure("2") do |config|
   }
 
   # Build extra_vars for ansible provisioning:
-  extra_vars = ""
-  config.user.user_vars do |key, value|
-    extra_vars += "#{key}=#{value} "
+  extra_vars = "{"
+  config.user.user_vars.each do |key, value|
+    extra_vars += "'#{key}':'#{value}',"
   end
-  extra_vars += "user=#{config.user.user}"
+  extra_vars += "'user':'#{config.user.user}'}"
 
   # VM Configuration
   config.vm.box = "ubuntu/focal64" # Ubuntu 20.04 64-bit
