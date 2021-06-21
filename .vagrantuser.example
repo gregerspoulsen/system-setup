@@ -1,4 +1,4 @@
-user: gp
-pwd: test
-host_mount: true
+user: gp # User to create on the system
+pwd: test # Password for user
+host_mount: true # Mount host ../ at client ~/sytup, see README.md
 user_repo: https://github.com/gregerspoulsen/sys-setup-gp.git

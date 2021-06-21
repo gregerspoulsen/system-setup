@@ -53,10 +53,21 @@ $mod + F12: Control Center
 
 # Creating a VM with Vagrant
 
-1. Clone this repo to a local folder
-2. [optional] Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit details in
-   personal_vars.yaml as desired.
+1. git clone 
+2. [optional] Fork https://github.com/gregerspoulsen/sys-setup-gp.git and edit
+   details in personal_vars.yaml as desired. Be aware that the user used here
+   must exist on the system, edit .vagrantuser accordingly.
 3. [optional] Create a .vagrantuser file, see .vagrantuser.example
 5. `vagrant up`
-6. Provision will now run and take quite some time, enjoy a break :)
+6. Provision will now. It takes quite some time - enjoy a break :)
 8. Take it for a spin...
+
+# Developing
+
+To iterate quicker when developing the vagrant code you can create a folder
+with the two folders base and personal and set host_mount = true in
+.vagrantuser. Instead of cloning from github vagrant will then mount the repos
+on the host at ~/sytup.
+
+You should also be aware of vagrants snapshot function as this enables to create
+and restore a box to avoid building everything from scratch each time.
