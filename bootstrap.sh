@@ -1,10 +1,14 @@
 #!/bin/bash
 # SytUp Bootstrap Script
 # 
-# The first argument to this the target user to apply the setup to, default is
-# current user
-# The second a potential link for user repo to use, default is
-# https://github.com/gregerspoulsen/sys-setup-gp.git
+# Arguments:
+# 1: user
+#    target user to apply the setup to, default is current user
+# 2: user link
+#    link for user repo to use, default is
+#    https://github.com/gregerspoulsen/sys-setup-gp.git
+# 3: extra_vars
+#    extra_vars to pass to ansible provisioning
 
 # Exit on error:
 set -e
@@ -13,6 +17,7 @@ set -e
 TARGET_USER=${1:-$USER}
 USER_REPO=${2:-https://github.com/gregerspoulsen/sys-setup-gp.git}
 MAIN_DIR=~"$TARGET_USER/sytup"
+EXTRA_VARS=${3-user=$TARGET_USER}
 
 # Expand ~ in MAIN_DIR
 if [ "${MAIN_DIR:0:1}" == \~ ]; then
@@ -62,4 +67,4 @@ fi
 
 # Set correct owner of $MAIN_DIR
 sudo chown -R $TARGET_USER:$TARGET_USER $MAIN_DIR
-ansible-playbook --extra-vars user=$TARGET_USER $MAIN_DIR/base/recipes/basic.yaml
+ansible-playbook --extra-vars $EXTRA_VARS $MAIN_DIR/base/recipes/basic.yaml

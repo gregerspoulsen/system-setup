@@ -6,7 +6,7 @@
     salt: 'randomSalt'
   
   tasks:
-  - name: Add user
+  - name: "Add user: {{ user }}"
     ansible.builtin.user:
       name: "{{ user }}"
       password: "{{pwd|password_hash('sha512', salt)}}"
