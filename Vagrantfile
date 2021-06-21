@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # Install required vagrant plugins:
-required_plugins = %w[nugrant]
+required_plugins = %w[nugrant vagrant-reload]
 plugins_to_install = required_plugins.reject { |plugin| Vagrant.has_plugin? plugin }
 unless plugins_to_install.empty?
   puts "Installing plugins: #{plugins_to_install.join(' ')}"
@@ -57,4 +57,6 @@ Vagrant.configure("2") do |config|
     path: "bootstrap.sh",
     args: [config.user.user, config.user.user_repo]
 
+
+  config.vm.provision :reload
 end
