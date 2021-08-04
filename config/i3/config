@@ -116,6 +116,11 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+set $monitor1 "Virtual1"
+set $monitor2 "Virtual2"
+
+workspace $ws10 output $monitor2
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -196,7 +201,7 @@ bindsym $mod+Print exec gnome-screenshot -a
 exec_always --no-startup-id $HOME/.cargo/bin/i3wsr --config /static/config/i3/i3wsr.toml
 
 # Map mod+b to workspace 10 - used for browser
-bindsym $mod+b workspace number $ws10
+bindsym $mod+b workspace 10
 # Map mod+ctrl+b to open a new browser instance
 bindsym $mod+Ctrl+b exec chromium
 
