@@ -1,0 +1,19 @@
+- name: Install tortoise hg
+  hosts: localhost
+  tasks:
+
+  - name: Uninstall debian mercurial package if present # versions on ubuntu repo are too old
+    apt:
+      name: mercurial
+      state: absent
+    become: True
+
+  - name: Upgrade mercurial if nescessary
+    pip:
+      name: mercurial>=5.8.1
+    become: True
+
+  - name: Install
+    ansible.builtin.apt:
+      deb: https://github.com/glaure/tortoisehg4ubuntu/releases/download/v5.8.1/tortoisehg_5.8.1-glaure_amd64.deb
+    become: True
