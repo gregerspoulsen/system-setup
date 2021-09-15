@@ -1,0 +1,6 @@
+name: symbols
+parent: default
+matches:
+  # Checkmark:
+  - trigger: ";cm"
+    replace: "✔ "

@@ -1,0 +1,21 @@
+name: date
+parent: default
+matches:
+  # Date Today
+  - trigger: ";dd"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d"
+
+  # Date Tomorrow
+  - trigger: ";dt"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d"
+          offset: 86400
