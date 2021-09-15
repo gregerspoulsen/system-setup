@@ -1,20 +1,30 @@
 - name: link scripts to /usr/bin
   hosts: localhost
-  vars_files:
-    - vars.yaml
+
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
+    base_path: '~{{ user }}/sytup/base'
+    user_path: '~{{ user }}/sytup/user'
 
   tasks:
 
-  - name: create list of scripts
+  - name: create list of scripts in base dir
     find:
       paths: '{{ base_path }}/scripts/'
-    register: scripts
+    register: base_scripts
 
+
+  - name: create list of scripts in user dir
+    find:
+      paths: '{{ user_path }}/scripts/'
+    register: user_scripts
+
+  # Create links to scripts detected previously:
   - name: create symlinks to scripts
     file:
       # Extract filename without path and extension:
       dest: '/usr/bin/{{ item.path | basename | splitext | first }}'
       src: '{{ item.path }}'
       state: link
-    loop: '{{ scripts.files }}' # Loop over files from previous task
+    loop: '{{ base_scripts.files + user_scripts.files }}'
     become: true
