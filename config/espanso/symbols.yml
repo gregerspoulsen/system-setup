@@ -4,3 +4,6 @@ matches:
   # Checkmark:
   - trigger: ";cm"
     replace: "✔ "
+
+  - trigger: ";sq"
+    replace: "²"
