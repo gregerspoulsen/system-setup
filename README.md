@@ -1,7 +1,7 @@
 
 
 # Introduction
-Basic setup for Ubuntu based system with i3 window manger. 
+Basic setup for Ubuntu based system with i3 window manager. 
 
 # Purpose
 The purpose of this project is two fold:
@@ -14,7 +14,7 @@ The purpose of this project is two fold:
 To the author that currently means:
 * Create an environment based on recipes so it can be recreated everywhere
 * Support both VM based and native setups.
-* Create a base that is really useful on its own
+* Create a base that is useful on its own
 * Make it possible to extend it with personal preferences with the same
   portability
 
@@ -29,10 +29,6 @@ Features:
 * chromium - base version of chrome
 * vscode - Visual Studio Code
 * msteams - Microsoft Teams
-* thunderbird
-  - requires manual configuration
-  - install addon: owl
-  - open settings for owl addon to add profile
 * web app links
   - add scripts/* to /usr/bin for easy access from dmenu
   - standard includes webapps like asana, google calendar, miro, dynalist
@@ -74,3 +70,6 @@ parent folder of base on the host at ~/sytup.
 You should also be aware of the vagrants snapshot function as this enables
 creating and restoring a box to avoid building everything from scratch each
 time.
+
+# Structure
+Currently this just consist of bunch of playbooks that are importer in basic.yaml. Variables are passed forward using set_fact - this is not a beautiful way to do it, in the future this should be converted to a role instead.
