@@ -5,3 +5,7 @@ matches:
   # Ansible Playbook
   - trigger: ";ap" 
     replace: "ansible-playbook"
+
+  # Docker Compose
+  - trigger: ";dc"
+    replace: "docker-compose"
