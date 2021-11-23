@@ -1,0 +1,24 @@
+---
+- name: setup github ssh authentication
+  hosts: localhost 
+  vars:
+    user: "{{ lookup('env', 'USER') }}" # default to current user
+    key_path: ~/.ssh/id_ssh_github
+
+  tasks:
+  
+  - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+    community.crypto.openssh_keypair:
+      path: "{{ key_path }}"
+
+  - name: Read SSH public key to authorize
+    ansible.builtin.shell: "cat {{ key_path + '.pub' }}"
+    register: ssh_pub_key
+
+  - name: Authorize key with GitHub
+    community.general.github_key:
+      force: no
+      state: present
+      name: "{{ ansible_hostname }}"
+      token: "{{ token }}"
+      pubkey: '{{ ssh_pub_key.stdout }}'
