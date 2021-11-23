@@ -22,3 +22,11 @@
       name: "{{ ansible_hostname }}"
       token: "{{ token }}"
       pubkey: '{{ ssh_pub_key.stdout }}'
+
+  - name: Install ssh config that use the key on github
+    copy:
+      dest: ~/.ssh/config
+      content: |
+        Host github.com
+        IdentityFile "{{ key_path }}"
+        User git
