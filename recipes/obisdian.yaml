@@ -1,0 +1,28 @@
+---
+- name: install obsidian
+  hosts: localhost 
+
+
+
+
+  tasks:
+
+  - name: install flatpak
+    apt:
+      name: flatpak
+    become: true
+
+  - name: Add the flathub flatpak repository remote
+    flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+      method: user
+
+
+  - name: install obisidian flatpak
+    community.general.flatpak:
+      name: md.obsidian.Obsidian
+      remote: flathub
+      method: user
+

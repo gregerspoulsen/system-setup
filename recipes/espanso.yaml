@@ -2,12 +2,14 @@
   hosts: localhost
   vars:
     user: "{{ lookup('env', 'USER') }}" # default to current user
+    espanso_config_dir: '~{{ user }}/.config/espanso/user/'
     base_path: '~{{ user }}/sytup/base'
     user_dir: '~{{ user }}/sytup/user'
     # Directory for links to user config files
-    linked_dir: "{{ (base_path, 'config/espanso/user/linked/') | path_join }}"
-  tasks:
+    base_link_dir: "{{ (espanso_config_dir, 'base') | path_join }}"
+    user_link_dir: "{{ (espanso_config_dir, 'user') | path_join }}"
 
+  tasks:
   - name: install xclip (required by espanso, but not installed automatically)
     apt:
       name: xclip
@@ -19,33 +21,51 @@
       classic: true
     become: true
 
-  - name: create symlink to config dir
+  # Link espanso config files in base:   
+  - name: create base dir
     file:
-      src: '{{ base_path }}/config/espanso'
-      dest: "~{{ user }}/.config/espanso"
-      state: link
-    become: true
-    become_user: "{{ user }}"
-
-  - name: find user espanso configs
-    find:
-      paths: '{{ user_dir }}/config/espanso/'
-    register: configs
-    become: true
-    become_user: "{{ user }}"
-      
-  - name: create linked dir
-    file:
-      path: "{{ linked_dir }}"
+      path: "{{ base_link_dir }}"
       state: directory
     become: true
     become_user: "{{ user }}"
 
-  - name: create symlink to user configs
+  - name: find espanso configs in base
+    find:
+      paths: '{{ base_path }}/config/espanso/'
+    register: base_configs
+    become: true
+    become_user: "{{ user }}"
+
+  - name: create symlink to base configs
     file:
-      dest: '{{ ( linked_dir, (item.path | basename) ) | path_join }}'
+      dest: '{{ ( base_link_dir, (item.path | basename) ) | path_join }}'
       src: '{{ item.path }}'
       state: link
-    loop: '{{ configs.files }}' # Loop over files from previous task
+    loop: '{{ base_configs.files }}' # Loop over files from previous task
+    become: true
+    become_user: "{{ user }}"
+
+
+  # Link espanso config files in user:   
+  - name: create base dir
+    file:
+      path: "{{ user_link_dir }}"
+      state: directory
+    become: true
+    become_user: "{{ user }}"
+
+  - name: find espanso configs in user folder
+    find:
+      paths: '{{ user_dir }}/config/espanso/'
+    register: base_configs
+    become: true
+    become_user: "{{ user }}"
+
+  - name: create symlink to base configs
+    file:
+      dest: '{{ ( user_link_dir, (item.path | basename) ) | path_join }}'
+      src: '{{ item.path }}'
+      state: link
+    loop: '{{ base_configs.files }}' # Loop over files from previous task
     become: true
     become_user: "{{ user }}"

@@ -14,13 +14,13 @@
          fullname: " {{ fullname }}"
   
  - import_playbook: vscode.yaml
-#  - import_playbook: espanso.yaml
+ - import_playbook: espanso.yaml
  - import_playbook: i3wm.yaml
  - import_playbook: chromium.yaml
  - import_playbook: i3wsr.yaml
-#  - import_playbook: link_scripts.yaml
+ - import_playbook: link_scripts.yaml
  - import_playbook: git.yaml
-#  - import_playbook: hg.yaml
+ - import_playbook: tortoise_hg.yaml
  - import_playbook: docker.yaml
  - import_playbook: zsh/complete.yaml
  - import_playbook: locale.yaml
