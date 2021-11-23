@@ -215,3 +215,6 @@ bindsym $mod+F12 exec gnome-control-center
 
 # Bind dmenu to win+shift+z
 bindsym $mod+shift+z exec dmenu_run
+
+# Restart Espanso to fix keyboard layout issue causing wrong characters
+exec --no-startup-id espanso restart
