@@ -9,3 +9,7 @@ matches:
   # Docker Compose
   - trigger: ";dc"
     replace: "docker-compose"
+
+  # Git Clone from GitHub
+  - trigger: ";gc"
+    replace: "git clone git@github.com:luftkode/$|$.git"
