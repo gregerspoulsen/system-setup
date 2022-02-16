@@ -19,7 +19,7 @@
     community.general.github_key:
       force: no
       state: present
-      name: "{{ ansible_hostname }}"
+      name: "{{ ansible_hostname + ansible_date_time.date}}"
       token: "{{ token }}"
       pubkey: '{{ ssh_pub_key.stdout }}'
 
