@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |v|
     v.gui = true # Display UI 
-    v.memory = 4096 # 4GB Memory
+    v.memory = 8192 # 4GB Memory
     v.customize ["modifyvm", :id, "--vram", "128"] # 128 MB Video Memory
     v.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
     v.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
