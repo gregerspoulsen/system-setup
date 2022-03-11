@@ -1,0 +1,17 @@
+argument_specs:
+  main:
+    short_description: Setup git
+    description:
+      - Installs git and configures user details
+    options:
+      user_email:
+        description:
+          - "Email address used for commit messages (git config: user.name)"
+        type: str
+        required: true
+      
+      user_name:
+        description:
+          - "Name used for commit messages (git config: user.name)"
+        type: str
+        required: true
