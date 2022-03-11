@@ -1,0 +1,21 @@
+---
+- name: install git
+  apt:
+    name: git
+  become: true
+
+- name: "set git user.email {{ user_email }}"
+  git_config:
+    name: user.email
+    scope: global
+    value: "{{ user_email }}"
+  become_user: "{{ user }}"
+  become: true
+    
+- name: "set git user.name to {{ user_name }}"
+  git_config:
+    name: user.name
+    scope: global
+    value: "{{ user_name }}"
+  become_user: "{{ user }}"
+  become: true
