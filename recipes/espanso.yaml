@@ -21,6 +21,9 @@
       classic: true
     become: true
 
+  - name: register espanso service
+    ansible.builtin.shell: espanso service register
+
   # Link espanso config files in base:   
   - name: create base dir
     file:
