@@ -3,6 +3,11 @@
 # Introduction
 Basic setup for Ubuntu based system with i3 window manager. 
 
+# Getting Started
+
+Start by installing vagrant and virtualbox. To allow resizing of disk-images add this environment variable:
+`VAGRANT_EXPERIMENTAL="disks"`
+
 # Purpose
 The purpose of this project is two fold:
 * To be able to take your preferred development environment with you whereever
