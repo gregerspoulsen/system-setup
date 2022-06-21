@@ -14,3 +14,7 @@
           - virtualbox-guest-utils
           - virtualbox-guest-x11
       become: true
+
+    - name: Set timezone to Europe/Copenhagen
+      community.general.timezone:
+        name: Europe/Copenhagen
