@@ -37,7 +37,7 @@ sudo apt upgrade -y
 # Install ansible:
 sudo apt install -y python3-pip
 sudo apt remove -y ansible # Pip cannot upgrade apt installed pkg as of 20210610
-sudo pip3 install "ansible>=4"
+sudo pip3 install "ansible>=4 ansible-lint"
 
 # Install required galaxy roles
 ansible-galaxy install sicruse.powerline-fonts gantsign.antigen oefenweb.locales gantsign.keyboard
