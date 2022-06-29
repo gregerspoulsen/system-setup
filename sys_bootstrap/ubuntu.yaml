@@ -7,14 +7,15 @@
         name: ubuntu-desktop
       become: true
 
-    - name: Install virtual box guest additions
-      apt:
-        pkg:
-          - virtualbox-guest-dkms
-          - virtualbox-guest-utils
-          - virtualbox-guest-x11
-      become: true
+    # - name: Install virtual box guest additions
+    #   apt:
+    #     pkg:
+    #       - virtualbox-guest-dkms
+    #       - virtualbox-guest-utils
+    #       - virtualbox-guest-x11
+    #   become: true
 
     - name: Set timezone to Europe/Copenhagen
       community.general.timezone:
         name: Europe/Copenhagen
+      become: True
