@@ -21,10 +21,10 @@
       classic: true
     become: true
 
-  - name: register espanso service
-    ansible.builtin.shell: espanso service register
-    become: true
-    become_user: "{{ user }}"
+  # - name: register espanso service
+  #   ansible.builtin.shell: espanso service register
+  #   become: true
+  #   become_user: "{{ user }}"
 
   # Link espanso config files in base:   
   - name: create base dir
