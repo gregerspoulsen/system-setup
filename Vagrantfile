@@ -53,12 +53,12 @@ Vagrant.configure("2") do |config|
   config.vm.disk :disk, size: "200GB", primary: true
 
   config.persistent_storage.enabled = true
-  config.persistent_storage.location = "D:/VirtualBox VMs/dev_persistent.vdi"
+  config.persistent_storage.location = "H:/dev_persistent.vdi"
   config.persistent_storage.size = 200000
   config.persistent_storage.mountname = 'dev'
   config.persistent_storage.filesystem = 'ext4'
   config.persistent_storage.mountpoint = '/home/gp/dev'
-  config.persistent_storage.diskdevice = '/dev/sdc'
+  config.persistent_storage.diskdevice = '/dev/sdd'
 
   # Disable auto update of virtualbox guest additions - as of now it does not
   # detect them as running and tries to re-install them on each boot
