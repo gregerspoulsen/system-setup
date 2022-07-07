@@ -19,3 +19,11 @@
       state: link
     become: true
     become_user: "{{ user }}"
+
+  - name: "create i3status config symlink"
+    file:
+      src: "{{ ( config_dir, 'i3status/' ) | path_join }}"
+      dest: "~{{ user }}/.config/i3status"
+      state: link
+    become: true
+    become_user: "{{ user }}"

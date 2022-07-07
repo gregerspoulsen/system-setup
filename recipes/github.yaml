@@ -7,6 +7,11 @@
 
   tasks:
   
+  - name: Check .ssh directory exists
+    file:
+      path: "{{ key_path | dirname }}"
+      state: directory
+
   - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
     community.crypto.openssh_keypair:
       path: "{{ key_path }}"
@@ -15,13 +20,13 @@
     ansible.builtin.shell: "cat {{ key_path + '.pub' }}"
     register: ssh_pub_key
 
-  - name: Authorize key with GitHub
-    community.general.github_key:
-      force: no
-      state: present
-      name: "{{ ansible_hostname }}"
-      token: "{{ token }}"
-      pubkey: '{{ ssh_pub_key.stdout }}'
+  # - name: Authorize key with GitHub
+  #   community.general.github_key:
+  #     force: no
+  #     state: present
+  #     name: "{{ ansible_hostname + ansible_date_time.date}}"
+  #     token: "{{ token }}"
+  #     pubkey: '{{ ssh_pub_key.stdout }}'
 
   - name: Install ssh config that use the key on github
     copy:

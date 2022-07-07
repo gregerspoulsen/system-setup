@@ -2,7 +2,7 @@
   hosts: localhost
   vars:
     user: "{{ lookup('env', 'USER') }}" # default to current user
-    espanso_config_dir: '~{{ user }}/.config/espanso/user/'
+    espanso_config_dir: '~{{ user }}/.config/espanso/match/'
     base_path: '~{{ user }}/sytup/base'
     user_dir: '~{{ user }}/sytup/user'
     # Directory for links to user config files
@@ -20,6 +20,11 @@
       name: espanso
       classic: true
     become: true
+
+  # - name: register espanso service
+  #   ansible.builtin.shell: espanso service register
+  #   become: true
+  #   become_user: "{{ user }}"
 
   # Link espanso config files in base:   
   - name: create base dir

@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # Install required vagrant plugins:
-required_plugins = %w[nugrant vagrant-reload]
+required_plugins = %w[nugrant vagrant-reload vagrant-persistent-storage vagrant-vbguest]
 plugins_to_install = required_plugins.reject { |plugin| Vagrant.has_plugin? plugin }
 unless plugins_to_install.empty?
   puts "Installing plugins: #{plugins_to_install.join(' ')}"
@@ -33,15 +33,36 @@ Vagrant.configure("2") do |config|
   extra_vars += "'user':'#{config.user.user}'}"
 
   # VM Configuration
-  config.vm.box = "ubuntu/focal64" # Ubuntu 20.04 64-bit
+  config.vm.box = "ubuntu/jammy64" # Ubuntu 20.04 64-bit
 
   config.vm.provider :virtualbox do |v|
     v.gui = true # Display UI 
     v.memory = 8192 # 4GB Memory
+    v.cpus = 6
     v.customize ["modifyvm", :id, "--vram", "128"] # 128 MB Video Memory
     v.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
     v.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
+    v.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+    v.customize ["modifyvm", :id, "--usb", "on"] # Enable USB
+    v.customize ["modifyvm", :id, "--usbxhci", "on"] # Enable USB3
+    v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+    v.customize ['modifyvm', :id, '--accelerate3d', 'on'] # Enable 3D Acceleration
   end
+
+  # Increase Disk Size from 40GB to 200GB
+  config.vm.disk :disk, size: "200GB", primary: true
+
+  config.persistent_storage.enabled = true
+  config.persistent_storage.location = "D:/VirtualBox VMs/dev_persistent.vdi"
+  config.persistent_storage.size = 200000
+  config.persistent_storage.mountname = 'dev'
+  config.persistent_storage.filesystem = 'ext4'
+  config.persistent_storage.mountpoint = '/home/gp/dev'
+  config.persistent_storage.diskdevice = '/dev/sdc'
+
+  # Disable auto update of virtualbox guest additions - as of now it does not
+  # detect them as running and tries to re-install them on each boot
+  config.vbguest.auto_update = false
 
   # Basic Ubuntu Setup with UI:
   config.vm.provision "ansible_local" do |ansible|
