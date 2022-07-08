@@ -36,23 +36,29 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64" # Ubuntu 20.04 64-bit
 
   config.vm.provider :virtualbox do |v|
-    v.gui = true # Display UI 
     v.memory = 8192 # 4GB Memory
     v.cpus = 6
     v.customize ["modifyvm", :id, "--vram", "128"] # 128 MB Video Memory
     v.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
     v.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
-    v.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
-    v.customize ["modifyvm", :id, "--usb", "on"] # Enable USB
-    v.customize ["modifyvm", :id, "--usbxhci", "on"] # Enable USB3
-    v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
-    v.customize ['modifyvm', :id, '--accelerate3d', 'on'] # Enable 3D Acceleration
+    if not ENV['SYTUP_CI'] == 'true' then
+      v.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+      v.customize ["modifyvm", :id, "--usb", "on"] # Enable USB
+      v.customize ["modifyvm", :id, "--usbxhci", "on"] # Enable USB3
+      v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+      v.customize ['modifyvm', :id, '--accelerate3d', 'on'] # Enable 3D Acceleration
+      v.gui = false # Headless for CI
+    else
+      v.gui = true 
+    end
   end
 
-  # Increase Disk Size from 40GB to 200GB
-  config.vm.disk :disk, size: "200GB", primary: true
+  if not ENV['SYTUP_CI'] == 'true' then
+    # Increase Disk Size from 40GB to 200GB
+    config.vm.disk :disk, size: "200GB", primary: true
+  end
 
-  config.persistent_storage.enabled = true
+  config.persistent_storage.enabled = false
   config.persistent_storage.location = "D:/VirtualBox VMs/dev_persistent.vdi"
   config.persistent_storage.size = 200000
   config.persistent_storage.mountname = 'dev'
@@ -63,6 +69,9 @@ Vagrant.configure("2") do |config|
   # Disable auto update of virtualbox guest additions - as of now it does not
   # detect them as running and tries to re-install them on each boot
   config.vbguest.auto_update = false
+
+  # set extra boot time for testing on slow machines:
+  config.vm.boot_timeout = 1800
 
   # Basic Ubuntu Setup with UI:
   config.vm.provision "ansible_local" do |ansible|

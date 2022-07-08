@@ -1,0 +1,16 @@
+# Workflow for building TEM OS Image
+
+name: Build and Provision Dev Machine
+
+on: [push]
+
+jobs:
+  build:
+    # Virtualbox only seems to work on MacOS github runners
+    runs-on: macos-10.15 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build machine and provision
+      run: test/test.sh
+      env:
+        SYTUP_CI: true
