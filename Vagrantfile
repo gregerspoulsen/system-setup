@@ -35,6 +35,10 @@ Vagrant.configure("2") do |config|
   # VM Configuration
   config.vm.box = "ubuntu/jammy64" # Ubuntu 20.04 64-bit
 
+  # Setup Bridged Network
+  # Target name can be found with: VBoxManage.exe list bridgedifs
+  config.vm.network "public_network", bridge: "Intel(R) Ethernet Connection (7) I219-V"
+
   config.vm.provider :virtualbox do |v|
     v.gui = true # Display UI 
     v.memory = 8192 # 4GB Memory
@@ -50,7 +54,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Increase Disk Size from 40GB to 200GB
-  config.vm.disk :disk, size: "200GB", primary: true
+  config.vm.disk :disk, size: "300GB", primary: true
 
   config.persistent_storage.enabled = true
   config.persistent_storage.location = "H:/dev_persistent.vdi"
