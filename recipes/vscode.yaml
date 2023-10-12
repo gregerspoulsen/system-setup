@@ -13,6 +13,7 @@
       - ms-vscode-remote.remote-containers
       - ms-vscode-remote.remote-ssh
       - streetsidesoftware.code-spell-checker
+      - mhutchie.git-graph
 
   tasks:
   - name: snap install vscode
