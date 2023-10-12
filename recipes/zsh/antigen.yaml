@@ -33,3 +33,4 @@
               url:  zsh-users/zsh-autosuggestions 
             - name: zsh-completions
               url:  zsh-users/zsh-completions 
+            - name: ssh-agent
