@@ -1,17 +1,44 @@
-- name: install docker
-  hosts: localhost
-  vars:
-    user: "{{ lookup('env', 'USER') }}" # default to current user
-
+---
+- hosts: localhost
+  become: true
   tasks:
-  - name: Install docker
+  - name: Install required system packages
     apt:
-      name: docker.io
-    become: true
+      pkg:
+        - ca-certificates
+        - curl
+        - gnupg
+      state: latest
+      update_cache: true
+
+  - name: Add Docker GPG apt Key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add Docker Repository
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present
+
+  - name: Update apt and install docker-ce
+    apt:
+      name:
+        - docker-ce
+        - docker-compose-plugin
+      state: latest
+      update_cache: true
+
+  - name: get user used to provision on target
+    become: false
+    shell: whoami
+    register: result
+  - set_fact:
+      user: "{{ result.stdout_lines[0] }}"
 
   - name: "Add user: '{{ user }}' to docker group"
     user:
-      name: '{{ user }}'
+      name: "{{ user }}"
       groups: docker
       append: yes
     become: True
